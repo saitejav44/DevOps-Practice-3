@@ -10,7 +10,6 @@ job('FirstMavenProject_DSL') {
         maven('clean package', pom.xml)
     }
     publishers {
-        //Archive the war file generated
         archiveArtifacts {
             pattern ('**/*.jar')
     }
