@@ -20,7 +20,6 @@ pipeline {
                 publishers {
                     echo "Archive the war file generated"
                     archiveArtifacts '**/*.jar'
-                    }
                 }
             }
         }
