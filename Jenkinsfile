@@ -4,7 +4,7 @@ pipeline {
         stage('Init'){
             steps{
                 echo 'Hi, This is a Practice file'
-                echo 'We are starting the teting'
+                echo 'We are starting the testing'
             }
         }
         stage('Build'){
@@ -14,6 +14,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
+                echo 'We are in Satging Area'
                 echo 'Deploying in Staging Area'
             }
         }
