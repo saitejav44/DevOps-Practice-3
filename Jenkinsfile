@@ -2,26 +2,26 @@ pipeline {
     agent any
     stages {
         stage('Init'){
-            steps{
-                echo 'Hi, This is a Practice file'
-                echo 'We are starting the testing'
+            steps {
+                echo "Copying project from Git repository"
+                scm {
+                    git("git@github.com:saitejav44/DevOps-Practice-3.git", 'master')
+                }
+                echo "Triggering Poll SCM - To execute the Job whenever new commit made in Git"
+                triggers {
+                    scm('* * * * *')
+                    }
             }
-        }
-        stage('Build'){
-            steps{
-                echo 'Building sample Maven Project'
+            steps {
+                echo "Exevuting maven command"
+                maven('clean package', 'pom.xml')
             }
-        }
-        stage('Deploy'){
-            steps{
-                echo 'We are in Staging Area'
-                echo 'Deploying in Staging Area'
-            }
-        }
-        stage('Deploy Production'){
-            steps{
-                echo 'We are in Production'
-                echo 'Deploying in Production'
+            steps {
+                publishers {
+                    echo "Archive the war file generated"
+                    archiveArtifacts '**/*.jar'
+                    }
+                }
             }
         }
     }
